@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appleframework.opm.dao.RopApiParamsMapper" >
+  <resultMap id="BaseResultMap" type="com.appleframework.opm.entity.RopApiParams" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="api_id" property="apiId" jdbcType="BIGINT" />
+    <result column="param_name" property="paramName" jdbcType="VARCHAR" />
+    <result column="control_type" property="controlType" jdbcType="INTEGER" />
+    <result column="data_type" property="dataType" jdbcType="VARCHAR" />
+    <result column="default_value" property="defaultValue" jdbcType="VARCHAR" />
+    <result column="example_value" property="exampleValue" jdbcType="VARCHAR" />
+    <result column="length" property="length" jdbcType="INTEGER" />
+    <result column="is_need" property="isNeed" jdbcType="BIT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, api_id, param_name, control_type, data_type, default_value, example_value, length, 
+    is_need, description, sort, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.appleframework.opm.entity.RopApiParamsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rop_api_params
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from rop_api_params
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from rop_api_params
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.appleframework.opm.entity.RopApiParamsExample" >
+    delete from rop_api_params
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.appleframework.opm.entity.RopApiParams" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into rop_api_params (api_id, param_name, control_type, 
+      data_type, default_value, example_value, 
+      length, is_need, description, 
+      sort, create_time, update_time
+      )
+    values (#{apiId,jdbcType=BIGINT}, #{paramName,jdbcType=VARCHAR}, #{controlType,jdbcType=INTEGER}, 
+      #{dataType,jdbcType=VARCHAR}, #{defaultValue,jdbcType=VARCHAR}, #{exampleValue,jdbcType=VARCHAR}, 
+      #{length,jdbcType=INTEGER}, #{isNeed,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.appleframework.opm.entity.RopApiParams" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into rop_api_params
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="apiId != null" >
+        api_id,
+      </if>
+      <if test="paramName != null" >
+        param_name,
+      </if>
+      <if test="controlType != null" >
+        control_type,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+      <if test="defaultValue != null" >
+        default_value,
+      </if>
+      <if test="exampleValue != null" >
+        example_value,
+      </if>
+      <if test="length != null" >
+        length,
+      </if>
+      <if test="isNeed != null" >
+        is_need,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="apiId != null" >
+        #{apiId,jdbcType=BIGINT},
+      </if>
+      <if test="paramName != null" >
+        #{paramName,jdbcType=VARCHAR},
+      </if>
+      <if test="controlType != null" >
+        #{controlType,jdbcType=INTEGER},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultValue != null" >
+        #{defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="exampleValue != null" >
+        #{exampleValue,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=INTEGER},
+      </if>
+      <if test="isNeed != null" >
+        #{isNeed,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.appleframework.opm.entity.RopApiParamsExample" resultType="java.lang.Integer" >
+    select count(*) from rop_api_params
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rop_api_params
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.apiId != null" >
+        api_id = #{record.apiId,jdbcType=BIGINT},
+      </if>
+      <if test="record.paramName != null" >
+        param_name = #{record.paramName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.controlType != null" >
+        control_type = #{record.controlType,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataType != null" >
+        data_type = #{record.dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaultValue != null" >
+        default_value = #{record.defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exampleValue != null" >
+        example_value = #{record.exampleValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.length != null" >
+        length = #{record.length,jdbcType=INTEGER},
+      </if>
+      <if test="record.isNeed != null" >
+        is_need = #{record.isNeed,jdbcType=BIT},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rop_api_params
+    set id = #{record.id,jdbcType=BIGINT},
+      api_id = #{record.apiId,jdbcType=BIGINT},
+      param_name = #{record.paramName,jdbcType=VARCHAR},
+      control_type = #{record.controlType,jdbcType=INTEGER},
+      data_type = #{record.dataType,jdbcType=VARCHAR},
+      default_value = #{record.defaultValue,jdbcType=VARCHAR},
+      example_value = #{record.exampleValue,jdbcType=VARCHAR},
+      length = #{record.length,jdbcType=INTEGER},
+      is_need = #{record.isNeed,jdbcType=BIT},
+      description = #{record.description,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.appleframework.opm.entity.RopApiParams" >
+    update rop_api_params
+    <set >
+      <if test="apiId != null" >
+        api_id = #{apiId,jdbcType=BIGINT},
+      </if>
+      <if test="paramName != null" >
+        param_name = #{paramName,jdbcType=VARCHAR},
+      </if>
+      <if test="controlType != null" >
+        control_type = #{controlType,jdbcType=INTEGER},
+      </if>
+      <if test="dataType != null" >
+        data_type = #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultValue != null" >
+        default_value = #{defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="exampleValue != null" >
+        example_value = #{exampleValue,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null" >
+        length = #{length,jdbcType=INTEGER},
+      </if>
+      <if test="isNeed != null" >
+        is_need = #{isNeed,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.appleframework.opm.entity.RopApiParams" >
+    update rop_api_params
+    set api_id = #{apiId,jdbcType=BIGINT},
+      param_name = #{paramName,jdbcType=VARCHAR},
+      control_type = #{controlType,jdbcType=INTEGER},
+      data_type = #{dataType,jdbcType=VARCHAR},
+      default_value = #{defaultValue,jdbcType=VARCHAR},
+      example_value = #{exampleValue,jdbcType=VARCHAR},
+      length = #{length,jdbcType=INTEGER},
+      is_need = #{isNeed,jdbcType=BIT},
+      description = #{description,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

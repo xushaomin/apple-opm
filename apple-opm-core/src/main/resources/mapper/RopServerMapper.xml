@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appleframework.opm.dao.RopServerMapper" >
+  <resultMap id="BaseResultMap" type="com.appleframework.opm.entity.RopServer" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="server_desc" property="serverDesc" jdbcType="VARCHAR" />
+    <result column="server_host" property="serverHost" jdbcType="VARCHAR" />
+    <result column="server_port" property="serverPort" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="side_type" property="sideType" jdbcType="INTEGER" />
+    <result column="env_type" property="envType" jdbcType="INTEGER" />
+    <result column="is_default" property="isDefault" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, server_desc, server_host, server_port, state, side_type, env_type, is_default, 
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.appleframework.opm.entity.RopServerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rop_server
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from rop_server
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from rop_server
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.appleframework.opm.entity.RopServerExample" >
+    delete from rop_server
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.appleframework.opm.entity.RopServer" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into rop_server (server_desc, server_host, server_port, 
+      state, side_type, env_type, 
+      is_default, create_time, update_time
+      )
+    values (#{serverDesc,jdbcType=VARCHAR}, #{serverHost,jdbcType=VARCHAR}, #{serverPort,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{sideType,jdbcType=INTEGER}, #{envType,jdbcType=INTEGER}, 
+      #{isDefault,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.appleframework.opm.entity.RopServer" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into rop_server
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serverDesc != null" >
+        server_desc,
+      </if>
+      <if test="serverHost != null" >
+        server_host,
+      </if>
+      <if test="serverPort != null" >
+        server_port,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="sideType != null" >
+        side_type,
+      </if>
+      <if test="envType != null" >
+        env_type,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serverDesc != null" >
+        #{serverDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="serverHost != null" >
+        #{serverHost,jdbcType=VARCHAR},
+      </if>
+      <if test="serverPort != null" >
+        #{serverPort,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="sideType != null" >
+        #{sideType,jdbcType=INTEGER},
+      </if>
+      <if test="envType != null" >
+        #{envType,jdbcType=INTEGER},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.appleframework.opm.entity.RopServerExample" resultType="java.lang.Integer" >
+    select count(*) from rop_server
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rop_server
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.serverDesc != null" >
+        server_desc = #{record.serverDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serverHost != null" >
+        server_host = #{record.serverHost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serverPort != null" >
+        server_port = #{record.serverPort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.sideType != null" >
+        side_type = #{record.sideType,jdbcType=INTEGER},
+      </if>
+      <if test="record.envType != null" >
+        env_type = #{record.envType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDefault != null" >
+        is_default = #{record.isDefault,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rop_server
+    set id = #{record.id,jdbcType=BIGINT},
+      server_desc = #{record.serverDesc,jdbcType=VARCHAR},
+      server_host = #{record.serverHost,jdbcType=VARCHAR},
+      server_port = #{record.serverPort,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      side_type = #{record.sideType,jdbcType=INTEGER},
+      env_type = #{record.envType,jdbcType=INTEGER},
+      is_default = #{record.isDefault,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.appleframework.opm.entity.RopServer" >
+    update rop_server
+    <set >
+      <if test="serverDesc != null" >
+        server_desc = #{serverDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="serverHost != null" >
+        server_host = #{serverHost,jdbcType=VARCHAR},
+      </if>
+      <if test="serverPort != null" >
+        server_port = #{serverPort,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="sideType != null" >
+        side_type = #{sideType,jdbcType=INTEGER},
+      </if>
+      <if test="envType != null" >
+        env_type = #{envType,jdbcType=INTEGER},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.appleframework.opm.entity.RopServer" >
+    update rop_server
+    set server_desc = #{serverDesc,jdbcType=VARCHAR},
+      server_host = #{serverHost,jdbcType=VARCHAR},
+      server_port = #{serverPort,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      side_type = #{sideType,jdbcType=INTEGER},
+      env_type = #{envType,jdbcType=INTEGER},
+      is_default = #{isDefault,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
