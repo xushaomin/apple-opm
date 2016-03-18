@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.appleframework.opm</groupId>
+    <artifactId>apple-opm</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  <artifactId>apple-opm-core</artifactId>
+  <name>apple-opm-core</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+    
+		<dependency>
+			<groupId>com.appleframework</groupId>
+			<artifactId>apple-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework</groupId>
+			<artifactId>apple-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework.orm</groupId>
+			<artifactId>apple-orm-mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework.boot</groupId>
+			<artifactId>apple-boot-jetty</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework.config</groupId>
+			<artifactId>apple-config-diamond</artifactId>
+		</dependency>
+
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		
+  </dependencies>
+</project>

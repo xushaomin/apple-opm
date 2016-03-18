@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appleframework.opm.dao.RopServerExtendMapper">
+
+	<sql id="Base_Column_List">
+		server.server_host as host, server.server_port as port
+	</sql>
+
+	<select id="selectByAppIdAndApiId" resultType="com.appleframework.opm.model.ServerBo">
+		select
+			<include refid="Base_Column_List" />
+		from
+			rop_server as server, rop_api_server as api
+		where
+			server.id = api.server_id and 
+			api.app_id = #{appId,jdbcType=BIGINT} and
+			api.api_id = #{apiId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="selectByEnvTypeAndDefault" resultType="com.appleframework.opm.model.ServerBo">
+		select
+			<include refid="Base_Column_List" />
+		from
+			rop_server
+		where
+			state =1 and env_type = #{envType,jdbcType=INTEGER} and is_default = 1 limit 1
+	</select>
+
+</mapper>
