@@ -21,9 +21,9 @@
 		select
 			<include refid="Base_Column_List" />
 		from
-			rop_server
+			rop_server as server
 		where
-			state =1 and env_type = #{envType,jdbcType=INTEGER} and is_default = 1 limit 1
+			server.state =1 and server.env_type = #{envType,jdbcType=INTEGER} and server.is_default = 1 limit 1
 	</select>
 
 </mapper>

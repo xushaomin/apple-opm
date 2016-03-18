@@ -28,13 +28,10 @@ public class ApiServerController {
 	public ApiServerResponse apiServer(ApiServerRequest request) throws Exception {
 		ApiServerResponse response = new ApiServerResponse();
 		String appKey = request.getRopRequestContext().getAppKey();
-		String env = request.getEnv();
-		
-		System.out.println(env);
-		
+		String env = request.getEnv();		
 		List<ApiBo> list = apiService.getList(appKey);
 		response.setApis(list);
-		ServerBo defaultServer = ropServerService.getByEnvTypeAndDefault(EnvType.valueOf(env));
+		ServerBo defaultServer = ropServerService.getByEnvTypeAndDefault(EnvType.valueOf(env.toUpperCase()));
 		response.setDefaults(defaultServer);
 		return response;
 	}
