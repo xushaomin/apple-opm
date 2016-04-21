@@ -5,7 +5,7 @@
 	<artifactId>apple-opm</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1</version>
-	<name>operating-opm Maven Webapp</name>
+	<name>apple-opm Maven</name>
 	<url>http://mvnrepo.appleframework.com</url>
 	
 	<properties>
@@ -149,13 +149,13 @@
 		<repository>
 			<id>nexus-releases</id>
 			<name>Local Nexus Releases Repository</name>
-			<url>http://119.147.47.72:8081/nexus/content/repositories/releases</url>
+			<url>http://mvnrepo.appleframework.com:8081/nexus/content/repositories/releases</url>
 		</repository>
 
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
 			<name>Local Nexus Snapshots Repository</name>
-			<url>http://119.147.47.72:8081/nexus/content/repositories/snapshots</url>
+			<url>http://mvnrepo.appleframework.com:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 	
