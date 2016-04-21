@@ -149,13 +149,13 @@
 		<repository>
 			<id>nexus-releases</id>
 			<name>Local Nexus Releases Repository</name>
-			<url>http://120.25.126.11:8081/nexus/content/repositories/releases</url>
+			<url>http://119.147.47.72:8081/nexus/content/repositories/releases</url>
 		</repository>
 
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
 			<name>Local Nexus Snapshots Repository</name>
-			<url>http://120.25.126.11:8081/nexus/content/repositories/snapshots</url>
+			<url>http://119.147.47.72:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 	

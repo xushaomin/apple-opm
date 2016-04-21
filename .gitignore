@@ -1,0 +1,11 @@
+/target/
+*/target/*
+.settings
+.project
+*/.settings
+*/.project
+*.classpath
+*.log
+*/src/main/resources/log4j.properties
+*/src/main/resources/system.properties
+
