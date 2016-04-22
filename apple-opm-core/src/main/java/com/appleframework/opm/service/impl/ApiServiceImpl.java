@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.appleframework.opm.entity.RopApi;
 import com.appleframework.opm.model.ApiBo;
+import com.appleframework.opm.model.EnvType;
 import com.appleframework.opm.model.ServerBo;
 import com.appleframework.opm.service.ApiService;
 import com.appleframework.opm.service.RopApiService;
@@ -24,11 +25,11 @@ public class ApiServiceImpl implements ApiService {
 	private RopServerService ropServerService;
 
 	@Override
-	public List<ApiBo> getList(String appkey) {
+	public List<ApiBo> getList(String appkey, EnvType envType) {
 		List<RopApi> apiList = ropApiService.findListByState();
 		List<ApiBo> list = new ArrayList<ApiBo>();
 		for (RopApi ropApi : apiList) {
-			List<ServerBo> serverList = ropServerService.findByAppIdAndApiId(1L, ropApi.getId());
+			List<ServerBo> serverList = ropServerService.findForRop(1L, ropApi.getId(), envType);
 			if(serverList.size() > 0) {
 				ApiBo api = new ApiBo(ropApi.getApiName(), ropApi.getApiPath(), ropApi.getApiVersion(), ropApi.getRequestType());
 				api.setServers(serverList);

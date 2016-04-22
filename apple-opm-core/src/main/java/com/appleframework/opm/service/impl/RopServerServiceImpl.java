@@ -41,8 +41,8 @@ public class RopServerServiceImpl implements RopServerService {
 	}
 
 	@Override
-	public List<ServerBo> findByAppIdAndApiId(Long appId, Long apiId) {
-		return ropServerExtendMapper.selectByAppIdAndApiId(appId, apiId);
+	public List<ServerBo> findForRop(Long appId, Long apiId, EnvType envType) {
+		return ropServerExtendMapper.selectForRop(appId, apiId, envType.getIndex());
 	}
 	
 	@Override

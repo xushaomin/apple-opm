@@ -12,7 +12,7 @@ public interface RopServerService {
     
     public Long save(RopServer record);
         
-    public List<ServerBo> findByAppIdAndApiId(Long appId, Long apiId);
+    public List<ServerBo> findForRop(Long appId, Long apiId, EnvType envType);
     
     public ServerBo getByEnvTypeAndDefault(EnvType envType);
     

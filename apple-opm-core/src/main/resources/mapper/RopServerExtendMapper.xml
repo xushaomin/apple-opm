@@ -6,15 +6,18 @@
 		server.server_host as host, server.server_port as port
 	</sql>
 
-	<select id="selectByAppIdAndApiId" resultType="com.appleframework.opm.model.ServerBo">
+	<select id="selectForRop" resultType="com.appleframework.opm.model.ServerBo">
 		select
 			<include refid="Base_Column_List" />
 		from
 			rop_server as server, rop_api_server as api
 		where
-			server.id = api.server_id and 
+			server.state =1 and
+			server.side_type =2 and
+			server.env_type = #{envType,jdbcType=INTEGER} and
 			api.app_id = #{appId,jdbcType=BIGINT} and
-			api.api_id = #{apiId,jdbcType=BIGINT}
+			api.api_id = #{apiId,jdbcType=BIGINT} and
+			server.id = api.server_id 
 	</select>
 	
 	<select id="selectByEnvTypeAndDefault" resultType="com.appleframework.opm.model.ServerBo">
