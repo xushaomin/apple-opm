@@ -15,7 +15,7 @@
 		<boot.version>0.2.3.RELEASE</boot.version>
 		<config.version>0.1.7.RELEASE</config.version>
 		<orm.version>0.1.2.RELEASE</orm.version>
-		<rop.version>1.1.2.RELEASE</rop.version>
+		<rop.version>1.2.0.RELEASE</rop.version>
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<project.version>0.0.1</project.version>
 	</properties>

@@ -19,7 +19,6 @@
 		<property name="locations">
 			<list>
 				<value>classpath:system.properties</value>
-				<value>classpath*:jdbc.properties</value>
 			</list>
 		</property>
 		<property name="loadRemote" value="true" />
